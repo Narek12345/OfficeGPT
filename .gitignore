@@ -1,0 +1,13 @@
+# Python byte-code.
+*.pyc
+__pycache__
+
+# Python virtual environment.
+env/
+venv/
+
+# DB.
+db.sqlite3
+
+# Media files.
+media/
