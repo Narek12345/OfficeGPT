@@ -17,17 +17,17 @@
 <body>
 	<div class="container">
 		<header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
-			<a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
+			<a href="{% url 'dashboard:dashboard' %}" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
 				<svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"/></svg>
         		<span class="fs-4">officeGPT</span>
 			</a>
 
       		<ul class="nav nav-pills">
-        		<li class="nav-item"><a href="#" class="nav-link active" aria-current="page">Dashboard</a></li>
-        		<li class="nav-item"><a href="#" class="nav-link">Функции</a></li>
-        		<li class="nav-item"><a href="#" class="nav-link">Зарегестрироваться</a></li>
-        		<li class="nav-item"><a href="#" class="nav-link">Войти</a></li>
-        		<li class="nav-item"><a href="#" class="nav-link">О нас</a></li>
+        		<li class="nav-item"><a href="{% url 'dashboard:dashboard' %}" class="nav-link active" aria-current="page">Dashboard</a></li>
+        		<li class="nav-item"><a href="{% url 'dashboard:functions' %}" class="nav-link">Функции</a></li>
+        		<li class="nav-item"><a href="" class="nav-link">Зарегестрироваться</a></li>
+        		<li class="nav-item"><a href="" class="nav-link">Войти</a></li>
+        		<li class="nav-item"><a href="{% url 'dashboard:about' %}" class="nav-link">О нас</a></li>
       		</ul>
     	</header>
   	</div>
