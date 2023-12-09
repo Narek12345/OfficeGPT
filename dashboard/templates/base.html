@@ -25,8 +25,14 @@
       		<ul class="nav nav-pills">
         		<li class="nav-item"><a href="{% url 'dashboard:dashboard' %}" class="nav-link active" aria-current="page">Dashboard</a></li>
         		<li class="nav-item"><a href="{% url 'dashboard:functions' %}" class="nav-link">Функции</a></li>
-        		<li class="nav-item"><a href="{% url 'account:register' %}" class="nav-link">Зарегестрироваться</a></li>
-        		<li class="nav-item"><a href="{% url 'account:login' %}" class="nav-link">Войти</a></li>
+        		<!-- Проверяем, зарегестрирован пользователь или нет. -->
+				{% if request.user.is_authenticated %}
+        			<li class="nav-item">Добро пожаловать, {{ request.user.first_name }}</li>
+        			<li class="nav-item"><a href="{% url 'account:logout' %}" class="nav-link">Выйти</a></li>
+        		{% else %}
+        			<li class="nav-item"><a href="{% url 'account:register' %}" class="nav-link">Зарегестрироваться</a></li>
+        			<li class="nav-item"><a href="{% url 'account:login' %}" class="nav-link">Войти</a></li>
+        		{% endif %}
         		<li class="nav-item"><a href="{% url 'dashboard:about' %}" class="nav-link">О нас</a></li>
       		</ul>
     	</header>
