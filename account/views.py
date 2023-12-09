@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.contrib.auth import login
 
 from .forms import UserRegistrationForm
 
@@ -13,6 +14,8 @@ def register(request):
 			new_user.set_password(user_form.cleaned_data['password'])
 			# Сохранить обьект User.
 			new_user.save()
+			# Вход в систему под новым аккаунтом.
+			login(request, new_user)
 
 			return render(request, 'account/register_done.html', {'new_user': new_user})
 	else:
