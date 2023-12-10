@@ -130,6 +130,8 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
-# Перенаправления, связанные с регистрацией.
-LOGIN_REDIRECT_URL = "/"
+# Перенаправления, связанные с действием на аккаунте.
+LOGIN_REDIRECT_URL = "dashboard_:about"
 LOGOUT_REDIRECT_URL = "/"
+
+# CSRF_COOKIE_SECURE = False

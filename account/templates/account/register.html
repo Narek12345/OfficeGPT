@@ -6,8 +6,8 @@
 	<h1>Регистрация</h1>
 	<p>Пожалуйста, заполните следующте поля:</p>
 	<form method='post'>
-		{{ user_form.as_p }}
 		{% csrf_token %}
+		{{ user_form.as_p }}
 		<p><input type="submit" value="Зарегестрироваться"></p>
 	</form>
 {% endblock %}
