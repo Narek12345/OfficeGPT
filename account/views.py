@@ -26,3 +26,7 @@ def register(request):
 def logout_view(request):
 	logout(request)
 	return redirect('dashboard:dashboard')
+
+
+def profile(request):
+	return render(request, 'account/profile.html')

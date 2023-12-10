@@ -131,7 +131,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 # Перенаправления, связанные с действием на аккаунте.
-LOGIN_REDIRECT_URL = "dashboard:about"
+LOGIN_REDIRECT_URL = "account:profile"
 LOGOUT_REDIRECT_URL = "/"
 
 # CSRF_COOKIE_SECURE = False

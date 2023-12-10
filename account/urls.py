@@ -6,6 +6,9 @@ from . import views
 app_name = 'account'
 
 urlpatterns = [
+	# URL-адрес профиля пользователя.
+	path('profile/', views.profile, name='profile'),
+
 	# URL-адрес регистрации.
 	path('register/', views.register, name='register'),
 
