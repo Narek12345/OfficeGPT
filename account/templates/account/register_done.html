@@ -2,5 +2,5 @@
 
 {% block content %}
 	<h3>Регистрация прошла успешно !</h3>
-	<p>Добро пожаловать, {{new_user.first_name}}</p>
+	<p>Добро пожаловать, <a href="{% url 'account:profile' %}">{{new_user.first_name}}</a></p>
 {% endblock %}
