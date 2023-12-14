@@ -1,6 +1,52 @@
 {% extends 'base.html' %}
 
 {% block content %}
-	<h3>Профиль</h3>
-	<a href="{% url 'account:password_change' %}">Смена пароля</a>
+	<div class="container mt-5">
+		<div class="row">
+			<!-- Информация о профиле. -->
+			<div class="col-lg-6">
+				<h2>Профиль пользователя</h2>
+				<p class="lead text-justify">
+					Это ваш профиль с вашими введенными данными. Здесь вы можете выполнять различные действия, связанные с редактированием данных.
+				</p>
+				<p><strong>Имя:</strong> {{ user.first_name }}</p>
+				<p><strong>Фамилия:</strong> {{ user.last_name }}</p>
+				<p><strong>Email:</strong> {{ user.email }}</p>
+				<p><strong>Последнее время посещения</strong> {{ user.last_login }}</p>
+			</div>
+
+			<!-- Форма для ввода токенов. -->
+			<div class="col-lg-6">
+				<h2>Ввод токенов</h2>
+				<form>
+					<div class="form-group">
+						<label for="token1">client_id:</label>
+						<input type="text" class="form-control" id="token1" name="token1" placeholder="Введите токен client_id из Авито" required>
+					</div>
+					<div class="form-group">
+						<label for="token2">client_secret:</label>
+						<input type="text" class="form-control" id="token2" name="token2" placeholder="Введите токен client_secret из Авито" required>
+					</div>
+					<div class="form-group">
+						<label for="token3">ChatGPT:</label>
+						<input type="text" class="form-control" id="token3" name="token3" placeholder="Введите токен OpenAI" required>
+					</div>
+					<button type="submit" class="btn btn-primary">Добавить</button>
+				</form>
+			</div>
+
+			<!-- Блок с различными функциями. -->
+			<div class="row mt-4">
+      			<div class="col-lg-12">
+        			<h2>Функции профиля</h2>
+        			<ul>
+          				<li><a href="#">Сменить пароль</a></li>
+          				<!-- Добавьте другие функции по желанию -->
+        			</ul>
+      			</div>
+    		</div>
+		</div>
+	</div>
 {% endblock %}
+
+
