@@ -1,6 +1,8 @@
 from django import forms
 from django.contrib.auth.models import User
 
+from .models import Profile
+
 
 class UserRegistrationForm(forms.ModelForm):
 	password = forms.CharField(label='Пароль',
@@ -17,3 +19,9 @@ class UserRegistrationForm(forms.ModelForm):
 		if cd['password'] != cd['password2']:
 			raise forms.ValidationError("Passwords don't match.")
 		return cd['password2']
+
+
+class TokenForm(forms.ModelForm):
+	class Meta:
+		model = Profile
+		fields = ['client_id_token', 'client_secret_token', 'chatgpt_token']
