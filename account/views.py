@@ -3,6 +3,7 @@ from django.contrib.auth import login, logout
 from django.views.decorators.http import require_POST
 from django.contrib.auth.decorators import login_required
 
+from .models import Profile
 from .forms import UserRegistrationForm, AddTokensForm
 
 
@@ -16,6 +17,8 @@ def register(request):
 			new_user.set_password(user_form.cleaned_data['password'])
 			# Сохранить обьект User.
 			new_user.save()
+			# Создаем обьект Profile.
+			Profile.objects.create(user=new_user)
 			# Вход в систему под новым аккаунтом.
 			login(request, new_user)
 
@@ -38,4 +41,15 @@ def profile(request):
 @require_POST
 def add_tokens(request, user_id):
 	"""Добавить токены в БД."""
-	
+	add_tokens_form = AddTokensForm(request.POST)
+	if add_tokens_form.is_valid():
+		data = add_tokens_form.data
+		profile = Profile.objects.filter(user=user_id).first()
+		profile.client_id_token = data['client_id_token']
+		profile.client_secret_token = data['client_secret_token']
+		profile.chatgpt_token = data['chatgpt_token']
+		profile.save()
+	else:
+		# Ошибка.
+		pass
+	return redirect('account:profile')

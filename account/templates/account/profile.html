@@ -13,23 +13,32 @@
 				<p><strong>Фамилия:</strong> {{ user.last_name }}</p>
 				<p><strong>Email:</strong> {{ user.email }}</p>
 				<p><strong>Последнее время посещения</strong> {{ user.last_login }}</p>
+
+				{% if request.user.profile.chatgpt_token %}
+					<p><strong>client_id:</strong> {{ request.user.profile.client_id_token }}</p>
+					<p><strong>client_secret:</strong> {{ request.user.profile.client_secret_token }}</p>
+					<p><strong>ChatGPT:</strong> {{ request.user.profile.chatgpt_token }}</p>
+				{% else %}
+					<p>Пожалуйста, добавьте токены для дальнейшей работы !</p>
+				{% endif %}
 			</div>
 
 			<!-- Форма для ввода токенов. -->
 			<div class="col-lg-6">
 				<h2>Ввод токенов</h2>
-				<form method="post" action="{% url 'account:add_tokens' user.id %}">
+				<form method="post" action="{% url 'account:add_tokens' request.user.id %}">
+					{% csrf_token %}
 					<div class="form-group">
 						<label for="token1">client_id:</label>
-						<input type="text" class="form-control" id="token1" name="token1" placeholder="Введите токен client_id из Авито" required>
+						<input type="text" class="form-control" id="token1" name="client_id_token" placeholder="Введите токен client_id из Авито" required>
 					</div>
 					<div class="form-group">
 						<label for="token2">client_secret:</label>
-						<input type="text" class="form-control" id="token2" name="token2" placeholder="Введите токен client_secret из Авито" required>
+						<input type="text" class="form-control" id="token2" name="client_secret_token" placeholder="Введите токен client_secret из Авито" required>
 					</div>
 					<div class="form-group">
 						<label for="token3">ChatGPT:</label>
-						<input type="text" class="form-control" id="token3" name="token3" placeholder="Введите токен OpenAI" required>
+						<input type="text" class="form-control" id="token3" name="chatgpt_token" placeholder="Введите токен OpenAI" required>
 					</div>
 					<button type="submit" class="btn btn-primary">Добавить</button>
 				</form>
