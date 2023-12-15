@@ -36,6 +36,8 @@ INSTALLED_APPS = [
     # My apps:
     'account',
     'dashboard',
+    'avito',
+    'chatgpt',
 
     # Django apps:
     'django.contrib.admin',
