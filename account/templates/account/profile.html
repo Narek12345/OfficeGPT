@@ -18,7 +18,7 @@
 			<!-- Форма для ввода токенов. -->
 			<div class="col-lg-6">
 				<h2>Ввод токенов</h2>
-				<form>
+				<form method="post" action="{% url 'account:add_tokens' user.id %}">
 					<div class="form-group">
 						<label for="token1">client_id:</label>
 						<input type="text" class="form-control" id="token1" name="token1" placeholder="Введите токен client_id из Авито" required>

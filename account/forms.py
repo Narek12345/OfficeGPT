@@ -21,7 +21,7 @@ class UserRegistrationForm(forms.ModelForm):
 		return cd['password2']
 
 
-class TokenForm(forms.ModelForm):
+class AddTokensForm(forms.ModelForm):
 	class Meta:
 		model = Profile
 		fields = ['client_id_token', 'client_secret_token', 'chatgpt_token']
