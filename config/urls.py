@@ -21,5 +21,4 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('dashboard.urls', namespace='dashboard')),
     path('account/', include('account.urls', namespace='account')),
-    path('chatgpt/', include('chatgpt.urls', namespace='chatgpt')),
 ]

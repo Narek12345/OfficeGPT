@@ -34,10 +34,10 @@ ALLOWED_HOSTS = ['*']
 
 INSTALLED_APPS = [
     # My apps:
-    'account',
     'dashboard',
-    'chatgpt',
-
+    'account',
+    'functions',
+    
     # Django apps:
     'django.contrib.admin',
     'django.contrib.auth',
