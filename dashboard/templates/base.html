@@ -24,7 +24,7 @@
 
       		<ul class="nav nav-pills">
         		<li class="nav-item"><a href="{% url 'dashboard:dashboard' %}" class="nav-link active" aria-current="page">Dashboard</a></li>
-        		<li class="nav-item"><a href="{% url 'dashboard:functions' %}" class="nav-link">Функции</a></li>
+        		<li class="nav-item"><a href="{% url 'functions:functions' %}" class="nav-link">Функции</a></li>
         		<!-- Проверяем, зарегестрирован пользователь или нет. -->
 				{% if request.user.is_authenticated %}
 					{% if request.user.first_name %}
