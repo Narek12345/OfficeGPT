@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block title %}Загрузить документ{% endblock %}
+
+{% block content %}
+	<div class="container mt-5">
+		<div class="row">
+			<!-- Пользователь уже добавил документ. Возвращаем добавленный документ и даем возможность удалить документ для добавления нового. -->
+			{% if request.user.chatgptdocument.document %}
+				<div class="col-lg-8 offset-lg-2">
+					<h2 class="text-center mb-4">Документ уже добавлен</h2>
+					<p class="lead text-justify">Вы уже добавили документ. Каждый пользователь может добавить только по 1 документу. Если вас не устраивает ваш добавленный документ, вы можете удалить его и добавить другой.</p>
+					
+				</div>
+			{% else %}
+				<div class="col-lg-8 offset-lg-2">
+					<h2 class="text-center mb-4">Добавить документ</h2>
+					<p class="lead text-justify">Загрузите пожалуйста файл с расширение txt, который содержит информацию с помощью которой ChatGPT сможет более подробно отвечать на ваши вопросы и не только.</p>
+					<form method="post" enctype="multipart/form-data">
+						{% csrf_token %}
+						{{ form.as_p }}
+						<button type="submit">Загрузить</button>
+					</form>
+				</div>
+			{% endif %}
+		</div>
+	</div>
+{% endblock %}
