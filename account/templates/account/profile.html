@@ -26,6 +26,9 @@
 			<!-- Форма для ввода токенов. -->
 			<div class="col-lg-6">
 				<h2>Ввод токенов</h2>
+				<p class="lead text-justify">
+					Знайте, что если вы уже ранее добавляли токены, то новые просто перезапишут старые токены. Новые не будут сохранены !
+				</p>
 				<form method="post" action="{% url 'account:add_tokens' request.user.id %}">
 					{% csrf_token %}
 					<div class="form-group">

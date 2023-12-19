@@ -3,23 +3,34 @@
 {% block title %}Задать вопрос ChatGPT{% endblock %}
 
 {% block content %}
-	<div class="container mt-5">
-		<div class="row">
-			<div class="col-lg-6">
-				<h2 class="text-center mb-4">Задать вопрос ChatGPT</h2>
-				<p>Текст:</p>
-				<form method="get">
-					{{ form.text }}
-					<p><input type="submit" value="Задать вопрос"></p>
-				</form>
-			</div>
-
-			<div class="col-lg-6">
-				{% if answer %}
-					<h3 class="mb-4">Ответ от ChatGPT:</h3>
-					<p>{{ answer }}</p>
-				{% endif %}
+	{% if section == 'chatgpt' %}
+		<div class="container mt-5">
+			<div class="row">
+				<div class="col-lg-6">
+					<h2 class="text-center mb-4">Задать вопрос ChatGPT</h2>
+					<p>Текст:</p>
+					<form method="get">
+						{{ form.text }}
+						<p><input type="submit" value="Задать вопрос"></p>
+					</form>
+				</div>
+	
+				<div class="col-lg-6">
+					{% if answer %}
+						<h2 class="mb-4">Ответ от ChatGPT</h2>
+						<p>{{ answer }}</p>
+					{% endif %}
+				</div>
 			</div>
 		</div>
-	</div>
+	{% else %}
+		<div class="container mt-5">
+			<div class="row">
+				<div class="col-lg-6">
+					<h2 class="text-center mb-4">Заполните профиль</h2>
+					<p class="lead text-justify">Пожалуйста, перед тем как задать вопрос ChatGPT, сначала добавьте токены на странице <a href="{% url 'account:profile' %}">профиля</a>! Пожалуйста, введите только настоящие данные.</p>
+				</div>
+			</div>
+		</div>
+	{% endif %}
 {% endblock %}

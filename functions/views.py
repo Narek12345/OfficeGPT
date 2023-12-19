@@ -23,5 +23,10 @@ class AskQuestionChatGPTView(View):
 		else:
 			answer = 'Вы не ввели текст'
 
-		context = {'form': form, 'answer': answer}
-		return render(request, self.template_name, context)
+		if request.user.profile.chatgpt_token:
+			context = {'form': form, 'answer': answer, 'section': 'chatgpt'}
+			return render(request, self.template_name, context)
+
+		else:
+			context = {'form': form, 'answer': answer, 'section': 'profile'}
+			return render(request, self.template_name, context)
