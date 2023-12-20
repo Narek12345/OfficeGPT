@@ -1,6 +1,7 @@
 from django.views import View
-from django.shortcuts import render
+from django.shortcuts import render, redirect, get_object_or_404
 
+from .models import ChatGPTDocument
 from .forms import AskQuestionChatGPTForm, ChatGPTDocumentForm
 
 
@@ -35,25 +36,6 @@ class AskQuestionChatGPTView(View):
 class UploadDocument(View):
 	template_name = 'functions/upload_document.html'
 
-	def get(self, request):
-		form = ChatGPTDocumentForm()
-		return render(request, self.template_name, {'form': form})
-
-
-	def post(self, request):
-		form = ChatGPTDocumentForm(request.POST)
-		print(form.data)
-		if form.is_valid():
-			print('Не выполняется эта часть')
-			new_document = form.save(commit=False)
-			new_document.user = request.user
-			new_document.save()
-		return render(request, self.template_name, {'form': form})
-
-
-class UploadDocument(View):
-	template_name = 'functions/upload_document.html'
-
 	def post(self, request):
 		form = ChatGPTDocumentForm(files=request.FILES)
 
@@ -68,3 +50,10 @@ class UploadDocument(View):
 	def get(self, request):
 		form = ChatGPTDocumentForm()
 		return render(request, self.template_name, {'form': form})
+
+
+def delete_document(request, pk):
+	chatgptdocument = get_object_or_404(ChatGPTDocument, pk=pk)
+	chatgptdocument.delete()
+
+	return redirect('functions:upload_document')
