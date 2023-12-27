@@ -11,3 +11,6 @@ db.sqlite3
 
 # Media files.
 media/
+
+# ChatGPT index.
+storage

@@ -4,6 +4,10 @@ from django.shortcuts import render, redirect, get_object_or_404
 from .models import ChatGPTDocument
 from .forms import AskQuestionChatGPTForm, ChatGPTDocumentForm
 
+from .chatgpt import upload_file_for_training, make_request_in_chatgpt
+
+import requests
+
 
 class FunctionsView(View):
 	template_name = 'functions/functions.html'
@@ -20,7 +24,7 @@ class AskQuestionChatGPTView(View):
 		text = form.data.get('text')
 
 		if text:
-			answer = text
+			answer = make_request_in_chatgpt(text)
 		else:
 			answer = 'Вы не ввели текст'
 
@@ -43,6 +47,9 @@ class UploadDocument(View):
 			new_document = form.save(commit=False)
 			new_document.user = request.user
 			new_document.save()
+
+			# Тренируем ChatGPT с помощью переданного файла.
+			upload_file_for_training(new_document.document, request.user.profile.chatgpt_token)
 
 		return render(request, self.template_name, {'form': form})
 

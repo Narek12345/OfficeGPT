@@ -9,7 +9,7 @@
 			{% if request.user.chatgptdocument.document %}
 				<div class="col-lg-8 offset-lg-2">
 					<h2 class="text-center mb-4">Документ уже добавлен</h2>
-					<p class="lead text-justify">Вы уже добавили <a href="">документ</a>. Каждый пользователь может добавить только по 1 документу. Если вас не устраивает ваш добавленный документ, вы можете <a href="{% url 'functions:delete_document' request.user.chatgptdocument.id %}">удалить его</a> и затем уже добавить другой на этой же странице.</p>
+					<p class="lead text-justify">Вы уже добавили документ. Каждый пользователь может добавить только по 1 документу. Если вас не устраивает ваш добавленный документ, вы можете <a href="{% url 'functions:delete_document' request.user.chatgptdocument.id %}">удалить его</a> и затем уже добавить другой на этой же странице.</p>
 				</div>
 			{% else %}
 				<div class="col-lg-8 offset-lg-2">
