@@ -50,6 +50,7 @@ class UploadDocument(View):
 
 			# Тренируем ChatGPT с помощью переданного файла.
 			upload_file_for_training(new_document.document, request.user.profile.chatgpt_token)
+			new_document.document.close()
 
 		return render(request, self.template_name, {'form': form})
 
